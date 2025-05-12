@@ -1,21 +1,34 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const connectDB = require('./utils/db.js');// Importar la función de conexión a la base de datos
-
-connectDB(); // Llamar a la función para conectar a la base de datos
 
 dotenv.config(); // Cargar las variables de entorno desde el archivo .env
 const app = express();// Crear una instancia de Express
 
 app.use(bodyParser.json()); // Middleware para parsear el cuerpo de las solicitudes JSON
 
-connectDB().then(() => {
-    const PORT = process.env.PORT || 3000; //Definimos el puerto en el que escuchará la aplicación
-    app.listen(PORT, () => {
-        console.log(`Servidor escuchando en el puerto ${PORT}`); //Mensaje de confirmación al iniciar el servidor
-    });
+//middleware para registrar las solicitudes entrantes
+app.use((req,res,next)=>{
+    console.log(`Solicitud entrate: ${req.method} ${req.url}`)
 })
-    .catch (error => {
-        console.error('Error al levantar el servicio', error.message); //Mensaje de error si no se puede conectar a la base de datos
-    })
+// Importar las rutas de los diferentes modulos en el archivo index.js
+const routes = require('./routes/index');
+//Asociar las rutas importadas a ssus respectivos endpoints
+app.use('/api', routes);
+
+app.use((req,res)=>{
+    console.error("ruta no orquestada en app.js"+ req.method+" "+req.url);
+    res.status(404).json({error: "Ruta no encontrada"});
+})
+
+//Middleware para manejar errores
+app.use((err,res)=> {
+    console.error("error en la aplicacion: ",err);
+    res.status(500).json({error:"error interno del servidor"});
+})
+//Iniciar el servicio 
+const PORT = process.env.PORT || 3000;
+app.listen (PORT,()=>{
+    console.log(`servidor escuchando en el puerto ${PORT}`);
+    console.log(`URL base: http://localhost:${PORT}/api`);
+});

@@ -4,7 +4,10 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "echo \"Error;no test specified\" && exut 1",
+    "node": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,8 @@
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "mysql2": "^3.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
