@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const usuarioController = require('../controllers/usuarioController');
+const antecedentesLaboralController = require('../controllers/antecedentesLaboralController');
 
 //Rutas para la API de usuarios 
 router.get('/', async(req,res,next)=>{
-    usuarioController.getAll(req,res);
+    antecedentesLaboralController.getAll(req,res);
 });
 
 module.exports = router;
