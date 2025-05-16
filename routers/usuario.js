@@ -8,7 +8,18 @@ const usuarioController = require('../controllers/usuarioController');
 router.get('/', (req, res, next) => {
    usuarioController.getAll(req, res);
  
- }
-);
+ });
+
+ router.post('/create', (req, res, next) => {
+    usuarioController.create(req, res);
+ });
+
+  router.put('/update', (req, res, next) => {
+    usuarioController.update(req, res);
+ });
+
+ router.delete('/remove', (req, res, next) => {
+    usuarioController.remove(req, res);
+ });
 
 module.exports = router;

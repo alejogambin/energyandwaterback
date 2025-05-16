@@ -13,6 +13,49 @@ const getAll = async (req, res) => {
     }
 };
 
+const create = async (req, res) => {
+    try{
+        const postulacion = req.body;
+        const result = await Postulacion.create(postulacion);
+        res.status(201).json(result);
+    }
+    catch (err) {
+        console.error('Error en el controlador de postulacion:', err);
+        return res.status(500).json({
+            error: 'Error interno del servidor'
+        });
+    }
+};
+
+const update = async (req, res) => {
+    try{
+        const postulacion = req.body;
+        const result = await Postulacion.update(postulacion);
+        res.status(200).json(result);
+    }
+    catch (err) {
+        console.error('Error en el controlador de postulacion:', err);
+        return res.status(500).json({
+            error: 'Error interno del servidor'
+        });
+    }
+};
+
+const remove = async (req, res) => {
+    try{
+        const postulacion = req.body;
+        const result = await Postulacion.remove(postulacion);
+        res.status(200).json(result);
+    }
+    catch (err) {
+        console.error('Error en el controlador de postulacion:', err);
+        return res.status(500).json({
+            error: 'Error interno del servidor'
+        });
+    }
+};
+
+
 module.exports = {
-    getAll
+    getAll,create,update,remove
 }

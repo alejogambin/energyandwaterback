@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 //Middleware para registrar las solicitudes entrantes
 app.use((req, res, next) => {
-    console.log('solicitud entrante:'+req.method+ ' '+req.url);
+    console.log('solicitud entrante:'+req.method+' '+req.url);
     next();
 });
 
