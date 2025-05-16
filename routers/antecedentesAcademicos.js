@@ -11,4 +11,17 @@ router.get('/', (req, res, next) => {
  }
 );
 
+router.post('/create', (req, res, next) => {
+    antecedentesAcademicosController.create(req, res);
+ });
+
+router.put('/update', (req, res, next) => {
+    antecedentesAcademicosController.update(req, res);
+ });
+
+ router.delete('/remove', (req, res, next) => {
+    antecedentesAcademicosController.remove(req, res);
+ });
+
+ 
 module.exports = router;

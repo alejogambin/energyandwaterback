@@ -11,4 +11,16 @@ router.get('/', (req, res, next) => {
  }
 );
 
+router.post('/create', (req, res, next) => {
+    postulacionController.create(req, res);
+ });
+
+  router.put('/update', (req, res, next) => {
+    postulacionController.update(req, res);
+ });
+
+ router.delete('/remove', (req, res, next) => {
+    postulacionController.remove(req, res);
+ });
+
 module.exports = router;
