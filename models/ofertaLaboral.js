@@ -56,7 +56,15 @@ remove : async(ofertalaboral) => {
         console.error('Error al eliminar la oferta laboral:', err);
         throw err;
     }
+    
+}
 
+crearOfertaReclutador: async(jsonbody)=>{
+   try{
+
+   }catch(err){
+        
+   } 
 }
 
 };
