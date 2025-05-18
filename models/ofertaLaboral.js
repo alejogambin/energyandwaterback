@@ -65,14 +65,15 @@ const OfertaLaboral = {
             );
             console.log('usuario ingresado', rows[0].estado);
             console.log('rol', rows[0].rol);
-            if(rows.length > 0){
+            if(rows.length >= 0){
                 
-                if(rows[0].rol == "Reclutador" && rows[0].estado =="Activo"){
+                if(rows[0].id == jsonbody.reclutador_id){
                     const [update] = await db.query('update ofertalaboral set estado=? where reclutador_id =?',
                         [jsonbody.estado, jsonbody.reclutador_id]
                     );
+                    
                     if(update.affectedRows > 0){
-                        return {message: `oferta Laboral ${jsonbody.estado} actualizado exitosamente`};
+                        return {message: `oferta Laboral, estado: ${jsonbody.estado}, actualizado exitosamente`};
                     }
                     return update;
                 };

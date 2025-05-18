@@ -31,6 +31,6 @@ app.use((err, req, res, next) => {
 //inciar el servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log('servidor escuchando en el puerto ${PORT}');
-    console.log('url de la api: http://localhost:${PORT}/api');
+    console.log(`servidor escuchando en el puerto ${PORT}`);
+    console.log(`url de la api: http://localhost:${PORT}/api`);
 });
