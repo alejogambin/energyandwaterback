@@ -55,6 +55,20 @@ const remove = async (req, res) => {
     }
 };
 
+const modificarestadoOfertaReclutador = async (req,res) =>{
+    try{
+        const ofertalaboral = req.body;
+        const result = await OfertaLaboral.modificarestadoOfertaReclutador(ofertalaboral);
+        res.status(200).json(result);
+    }
+    catch (err) {
+        console.error('Error al cambiar el estado de oferta: ', err);
+        return res.status(500).json({
+            error: 'Error interno del servidor'
+        });
+    }
+}
+
 module.exports = {
-    getAll,update,create,remove
+    getAll,update,create,remove,modificarestadoOfertaReclutador
 }

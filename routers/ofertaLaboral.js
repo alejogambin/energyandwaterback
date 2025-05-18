@@ -21,4 +21,8 @@ router.post('/create', (req, res, next) => {
     ofertaLaboralController.remove(req, res);
  });
 
+ router.put('/cambiarEstado', (req, res, next) => {
+    ofertaLaboralController.modificarestadoOfertaReclutador(req, res);
+ });
+
 module.exports = router;

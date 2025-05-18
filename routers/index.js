@@ -16,6 +16,7 @@ router.use('/antecedentesAcademicos', antecedentesAcademicosRoutes);
 router.use('/ofertasLaborales', ofertaLaboralRoutes);
 router.use('/postulaciones', postulacionRoutes);
 
+
 //Middleware para capturar rutas no manejadas en este archivo
 router.use((req, res) => {
     console.error('ruta no orquestada en index.js'+req.method+' '+req.url);
