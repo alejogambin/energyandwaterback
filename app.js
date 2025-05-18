@@ -1,26 +1,30 @@
+// Importa los módulos necesarios
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 
-// Cargar las varibles de entorno del archivo .env
-
+// Carga las variables de entorno desde el archivo .env
 dotenv.config();
 
+// Crea una instancia de la aplicación Express
 const app = express();
+
+// Middleware para analizar el cuerpo de las solicitudes en formato JSON
 app.use(bodyParser.json());
 
-//Middleware para registrar las solicitudes entrantes
+// Middleware para registrar todas las solicitudes entrantes en consola
 app.use((req, res, next) => {
-    console.log('solicitud entrante:'+req.method+' '+req.url);
+    console.log('solicitud entrante:' + req.method + ' ' + req.url);
     next();
 });
 
-//Importar las rutas de los diferentes modulos en el archivo index.js
+// Importa las rutas definidas en el archivo index.js dentro de la carpeta routers
 const routes = require('./routers/index');
-//Asociar las rutas importadas a sus respectivos endpoints
+
+// Asocia las rutas importadas a sus respectivos endpoints bajo el prefijo /api
 app.use('/api', routes);
 
-//Middleare para manejar errores
+// Middleware para manejar errores globales de la aplicación
 app.use((err, req, res, next) => {
     console.error('error en la aplicacion: ', err.message);
     res.status(500).json({
@@ -28,7 +32,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-//inciar el servidor
+// Inicia el servidor en el puerto definido en las variables de entorno o en el 3000 por defecto
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`servidor escuchando en el puerto ${PORT}`);
