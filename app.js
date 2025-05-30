@@ -2,6 +2,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const swaggerUi= require('swagger-ui-express');
+const swaggerSpec= require('./swaggerConfig');
+
+
 
 // Carga las variables de entorno desde el archivo .env
 dotenv.config();
@@ -38,3 +42,5 @@ app.listen(PORT, () => {
     console.log(`servidor escuchando en el puerto ${PORT}`);
     console.log(`url de la api: http://localhost:${PORT}/api`);
 });
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
